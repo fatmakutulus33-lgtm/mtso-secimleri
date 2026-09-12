@@ -14,6 +14,11 @@ const serverConfigPath = "dist/server/wrangler.json";
 const serverConfig = JSON.parse(await readFile(serverConfigPath, "utf8"));
 serverConfig.d1_databases = [binding];
 serverConfig.compatibility_flags = [...new Set(serverConfig.compatibility_flags ?? [])];
+// Cloudflare Pages uses the output directory and its _worker.js entrypoint.
+// Vinext adds Worker-only fields which Pages rejects during deployment.
+delete serverConfig.main;
+delete serverConfig.rules;
+delete serverConfig.assets;
 await writeFile(serverConfigPath, JSON.stringify(serverConfig));
 
 await rm(output, { recursive: true, force: true });
