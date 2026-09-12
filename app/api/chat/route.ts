@@ -1,0 +1,4 @@
+import {env} from 'cloudflare:workers';
+const out=(data:unknown,status=200)=>Response.json(data,{status,headers:{'Cache-Control':'no-store'}});
+export async function GET(){const r=await env.DB.prepare('SELECT id,display_name,message,created_at FROM chat_messages ORDER BY created_at DESC LIMIT 50').all();return out(r.results.reverse())}
+export async function POST(request:Request){const b=await request.json() as {message?:string},ip=(request.headers.get('CF-Connecting-IP')||'Bilinmiyor').slice(0,64),message=(b.message||'').trim().slice(0,500);if(!message)return out({error:'Mesaj gereklidir.'},400);await env.DB.prepare('INSERT INTO chat_messages(id,display_name,message,created_at) VALUES(?,?,?,?)').bind(crypto.randomUUID(),ip,message,new Date().toISOString()).run();return out({saved:true},201)}

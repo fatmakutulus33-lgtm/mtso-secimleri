@@ -1,0 +1,1 @@
+ALTER TABLE submissions ADD COLUMN color text NOT NULL DEFAULT '#17324e';

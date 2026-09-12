@@ -1,0 +1,11 @@
+{
+  "name": "mtso26",
+  "pages_build_output_dir": "dist/pages",
+  "compatibility_date": "2026-05-15",
+  "compatibility_flags": ["nodejs_compat"],
+  "d1_databases": [{
+    "binding": "DB",
+    "database_name": "mtso-secimleri-db",
+    "database_id": "20e6cf8b-e55f-49c8-8d1a-16fae06a7e4e"
+  }]
+}

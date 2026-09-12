@@ -1,0 +1,16 @@
+{
+  "name": "mtso-secimleri-2026",
+  "main": "dist/server/index.js",
+  "compatibility_date": "2026-05-15",
+  "compatibility_flags": ["nodejs_compat"],
+  "no_bundle": true,
+  "rules": [{ "type": "ESModule", "globs": ["dist/server/**/*.js", "dist/server/**/*.mjs"] }],
+  "d1_databases": [{
+    "binding": "DB",
+    "database_name": "mtso-secimleri-db",
+    "database_id": "20e6cf8b-e55f-49c8-8d1a-16fae06a7e4e",
+    "migrations_dir": "drizzle"
+  }],
+  "assets": { "directory": "dist/client" },
+  "observability": { "enabled": true }
+}
