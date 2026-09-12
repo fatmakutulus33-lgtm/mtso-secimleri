@@ -16,6 +16,7 @@ serverConfig.compatibility_flags = [...new Set(serverConfig.compatibility_flags 
 delete serverConfig.main;
 delete serverConfig.rules;
 delete serverConfig.assets;
+delete serverConfig.dev;
 await writeFile(serverConfigPath, JSON.stringify(serverConfig));
 
 await rm(output, { recursive: true, force: true });
